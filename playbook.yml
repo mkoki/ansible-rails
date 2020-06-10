@@ -1,0 +1,17 @@
+---
+- hosts: target
+  remote_user: root
+
+  roles:
+    - postgres
+    - app
+    - common
+    - ruby
+    - yarn
+    - nginx
+
+  vars:
+    app_name: rails-tyutorial
+    user_name: ec2-user
+    grp_name: ec2-user
+    app_root: "/var/www/{{ app_name }}"
