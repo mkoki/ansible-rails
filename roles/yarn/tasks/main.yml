@@ -4,18 +4,23 @@
     register: node_installed
     ignore_errors: true
     changed_when: False
-  
-  - name: download nodejs
-    get_url:
-      url: https://rpm.nodesource.com/setup_8.x
-      dest: /tmp/node_setup.sh
-      mode: 0755
-    when: node_installed is failed
-  
-  - name: execute nodejs setup script
-    shell: /tmp/node_setup.sh
-    when: node_installed is failed
+
+
+  - name: node install
+    yum:
+        name: "nodejs"
+        state: absent
     become: yes
+
+  - name: install nodejs 10.13.0
+    shell: rpm -Uvh https://rpm.nodesource.com//pub_10.x/el/6/x86_64/nodejs-10.13.0-1nodesource.x86_64.rpm
+    become: yes
+
+
+  # - name: execute nodejs setup script
+  #   shell: /tmp/node_setup.sh
+  #   when: node_installed is failed
+  #   become: yes
   
   - name: node install
     yum:

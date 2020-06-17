@@ -1,14 +1,15 @@
 ---
 - hosts: target
-  remote_user: root
+  remote_user: ec2-user
 
   roles:
-    - postgres
+    - hello
     - app
     - common
     - ruby
     - yarn
     - nginx
+
 
   vars:
     app_name: rails-tyutorial

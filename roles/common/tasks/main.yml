@@ -1,3 +1,4 @@
+---
 - name: install yum package
   yum:
     state: latest
